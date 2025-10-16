@@ -26,11 +26,11 @@ module "eks" {
       max_size     = 4
       desired_size = 2
 
-      instance_types = ["t2.medium"]
+      instance_types = ["t3.small"]
       capacity_type  = "SPOT"
 
       tags = {
-        ExtraTag = "Panda_Node"
+        ExtraTag = "Nodejs_Node"
       }
     }
   }
