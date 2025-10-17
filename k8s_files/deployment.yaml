@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nodejs-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nodejs-app
@@ -17,7 +17,26 @@ spec:
     spec:
       containers:
       - name: nodejs-container
-        image: 834873819307.dkr.ecr.us-east-1.amazonaws.com/nodejs-app:latest
+        image: TO_BE_REPLACED_BY_JENKINS
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
-...
+        env:
+          - name: PORT
+            value: "3000"
+        readinessProbe:
+          httpGet: { path: /healthz, port: 3000 }
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet: { path: /healthz, port: 3000 }
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+

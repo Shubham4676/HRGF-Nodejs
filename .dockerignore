@@ -1,0 +1,15 @@
+node_modules
+npm-cache
+npm-debug.log*
+.git
+.gitignore
+Dockerfile
+README.md
+k8s_files
+terraform_code
+terraform.tfstate*
+*.tfvars
+*.pem
+*.log
+.vscode
+**/.terraform/*

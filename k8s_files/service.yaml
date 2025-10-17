@@ -6,12 +6,12 @@ metadata:
   labels:
     app: nodejs-app
 spec:
-  ports:
-  - name: http
-    port: 3000
-    protocol: TCP
-    targetPort: 3000
+  type: LoadBalancer
   selector:
     app: nodejs-app
-  type: LoadBalancer
-...
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
+    protocol: TCP
+  externalTrafficPolicy: Cluster
